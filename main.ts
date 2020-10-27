@@ -1,9 +1,10 @@
 
 namespace imagesettings {
 
-    //% blockNamespace=Images
+    //% blockNamespace=images
     //% block="set setting $key to image $toSave"
-    //% toSave.defl=screen_image_picker
+    //% toSave.shadow=screen_image_picker
+    //% group="settings"
     export function writeImage(key: string, toSave: Image) {
         const w = toSave.width;
         const h = toSave.height;
@@ -27,8 +28,9 @@ namespace imagesettings {
         return `--writeImage${key}`;
     }
     
-    //% blockNamespace=Images
+    //% blockNamespace=images
     //% block="read setting $key as image"
+    //% group="settings"
     export function readImage(key: string): Image {
         const namespacedSetting = settingKey(key);
         const loadedImg = settings.readBuffer(namespacedSetting);
