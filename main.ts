@@ -19,21 +19,14 @@ namespace imagesettings {
             imgBuf.write(2 + i * w, rowBuf);
         }
 
-        const namespacedSetting = settingKey(key);
-
-        settings.writeBuffer(namespacedSetting, imgBuf);
+        settings.writeBuffer(key, imgBuf);
     }
 
-    function settingKey(key: string) {
-        return `--writeImage${key}`;
-    }
-    
     //% blockNamespace=images
     //% block="read setting $key as image"
     //% group="settings"
     export function readImage(key: string): Image {
-        const namespacedSetting = settingKey(key);
-        const loadedImg = settings.readBuffer(namespacedSetting);
+        const loadedImg = settings.readBuffer(key);
         if (!loadedImg)
             return undefined;
         const w = loadedImg.getUint8(0);
